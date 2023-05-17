@@ -1,0 +1,13 @@
+{
+  "info_fill": "ИНФО",
+  "success_full": "УСПЕШНО",
+  "error_full": "ОШИБКА",
+  "success": {
+    "auth_success": "Авторизация прошла успешно",
+    "copied_clipboard": "Скопировано в буфер обмена: "
+  },
+  "error": {
+    "default": "Что-то пошло не так..."
+  },
+  "info": {}
+}

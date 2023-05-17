@@ -1,0 +1,269 @@
+@import "vars";
+
+/* Helpers */
+
+@mixin Outline {
+	outline: 4px solid rgba($color-blue, 0.25);
+}
+
+// Input, Select, Textarea label.
+@mixin InputLabel {
+	font-size: $font-size-h3;
+	font-weight: 400;
+
+	span.weak {
+		color: $color-gray;
+	}
+}
+
+@mixin YellowScrollBar {
+	box-sizing: border-box;
+
+	&::-webkit-scrollbar {
+		width: 4px;
+		height: 4px;
+		/* ширина scrollbar */
+	}
+
+	&::-webkit-scrollbar-track {
+		background: rgba(241, 206, 140, 0.2);
+		border-radius: 1em;
+		/* цвет дорожки */
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $color-yellow;
+		/* цвет плашки */
+		border-radius: 1em;
+		/* закругления плашки */
+		//border: 3px solid orange;  /* padding вокруг плашки */
+	}
+}
+
+@mixin BlueScrollBar {
+	box-sizing: border-box;
+
+	&::-webkit-scrollbar {
+		width: 4px;
+		height: 4px;
+		/* ширина scrollbar */
+	}
+
+	&::-webkit-scrollbar-track {
+		background: rgba(241, 206, 140, 0.2);
+		border-radius: 1em;
+		/* цвет дорожки */
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $color-blue-gradient;
+		/* цвет плашки */
+		border-radius: 1em;
+		/* закругления плашки */
+		//border: 3px solid orange;  /* padding вокруг плашки */
+	}
+}
+
+@mixin ScrollBarHidden {
+	&::-webkit-scrollbar {
+		width: 0;
+		opacity: 0;
+		overflow: hidden;
+		display: none;
+	}
+
+	&::-webkit-scrollbar-track {
+		width: 0;
+		opacity: 0;
+		overflow: hidden;
+		display: none;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		width: 0;
+		opacity: 0;
+		overflow: hidden;
+		display: none;
+	}
+}
+
+// Input, Select, Textarea appearance.
+@mixin InputAppearance($padding: 0.875em 1.25em) {
+	padding: $padding;
+	background: $color-gray-gradient;
+	border: 1px solid transparent;
+	border-radius: 0.5em;
+
+	color: $color-white;
+	transition: 200ms ease background-color, 200ms ease border-color;
+
+	&:focus,
+	&:focus-within,
+	&--focused {
+		color: $color-dark;
+		background: white;
+		border-color: $color-yellow;
+		box-shadow: 0 0 0 4px rgba($color-yellow, 0.25);
+	}
+
+	&:disabled,
+	&--disabled {
+		//background: $color-gray;
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+}
+
+@mixin Badge($size: 1em, $float: true) {
+	@if $float==true {
+		position: absolute;
+		top: $size / -2;
+		right: $size / -2;
+	}
+
+	padding: $size / 2;
+	border-radius: 50%;
+}
+
+/* Font */
+
+@mixin Typography($size: null, $weight: null) {
+	font-size: $size;
+	font-weight: $weight;
+
+	white-space: pre-line;
+	word-break: normal;
+	line-height: 1.25;
+
+	@include Mobile() {
+		white-space: normal;
+
+		br {
+			display: none;
+		}
+	}
+}
+
+/* Adaptive (Goes from `DesktopLowResolution` to `Mobile`) */
+
+
+@mixin DesktopMediumResolution {
+	@media screen and (max-width: #{$width-desktop-medium-resolution}) {
+		@content;
+	}
+}
+
+@mixin DesktopLowResolution {
+	@media screen and (max-width: #{$width-desktop}) {
+		@content;
+	}
+}
+
+
+@mixin DesktopLowestResolution {
+	@media screen and (max-width: #{$width-desktop-low}) {
+		@content;
+	}
+}
+
+@mixin Tablet {
+	@media screen and (max-width: #{$width-tablet}) {
+		@content;
+	}
+}
+
+
+@mixin Mobile {
+	@media screen and (max-width: #{$width-mobile}) {
+		@content;
+	}
+}
+
+@mixin Box {
+	padding: 1.5em 1.75em;
+	background: linear-gradient(145.32deg, rgba(23, 23, 23, 0.4) 6.49%, rgba(255, 255, 255, 0.012) 59.28%, rgba(32, 32, 32, 0.144) 113.18%), rgba(31, 30, 33, 0.6);
+	backdrop-filter: blur(5px);
+	border-radius: 1em;
+}
+
+
+/* Utils */
+
+@mixin line-clamp($lines) {
+	@supports (display: -webkit-box) {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: $lines;
+	}
+
+	@supports (display: box) {
+		display: box;
+		box-orient: vertical;
+		line-clamp: $lines;
+	}
+
+	@supports (not (display: -webkit-box)) and (not (display: box)) {
+		max-height: 1em * $lines;
+	}
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@mixin WidthLimit {
+	max-width: $width-desktop;
+
+	margin-left: auto;
+	margin-right: auto;
+
+	@include Tablet {
+		padding-left: 4vw;
+		padding-right: 4vw;
+	}
+}
+
+@mixin column-gap($gap) {
+	&>*:not(:first-child) {
+		margin-left: $gap;
+	}
+}
+
+@mixin row-gap($gap) {
+	&>*:not(:first-child) {
+		margin-top: $gap;
+	}
+}
+
+@mixin TextBackground($color) {
+	color: transparent;
+	background: $color;
+	background-clip: text;
+	text-fill-color: transparent;
+}
+
+/* Scrollbar */
+
+@mixin Scrollbar($size: 1em, $thumbColor: rebeccapurple, $trackColor: white) {
+
+	/* Firefox */
+	& {
+		scrollbar-width: thin;
+		scrollbar-color: $thumbColor $trackColor;
+	}
+
+	/* Chrome, Edge, and Safari */
+	&::-webkit-scrollbar {
+		height: $size;
+		width: $size;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: $trackColor;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $thumbColor;
+		border-radius: 0.5em;
+		border: 3px solid $trackColor;
+	}
+}

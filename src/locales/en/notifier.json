@@ -1,0 +1,14 @@
+{
+  "success_full": "SUCCESS",
+  "error_full": "ERROR",
+  "success": {
+    "auth_success": "Authorization was successful",
+    "copied_clipboard": "Copied to clipboard: "
+  },
+  "error": {
+    "default": "Something went wrong..."
+  },
+  "info": {
+
+  }
+}

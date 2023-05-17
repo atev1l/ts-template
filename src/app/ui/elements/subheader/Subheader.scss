@@ -1,0 +1,14 @@
+@import "~assets/scss/bundle.scss";
+
+.subheader-text {
+  color: $color-dark;
+  //color: var(--color-gray-weak);
+  font-size: 15px;
+  line-height: 1em;
+  display: block;
+  //white-space: pre;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,14 @@
+{
+  "error": {
+    "incorrect_password": "The password is incorrect",
+    "invalid_email": "Invalid email address",
+    "invalid_code": "Invalid code",
+    "more_6_characters": "The password must contain more than 6 characters",
+    "passwords_no_match": "Passwords don\"t match",
+    "username_matches": "This username is already used by another user",
+    "email_match": "This email is already used by another user",
+    "incorrect_wallet": "The wallet address is invalid. Please provide the correct wallet",
+    "file_over_error": "The file size should not exceed 50 MB",
+    "file_over_amount_error": "You can attach a maximum of 5 files"
+  }
+}
